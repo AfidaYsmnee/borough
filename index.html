@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Capstone Project Team 9</title>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css">
+    <link rel="stylesheet" href="assets/vendors/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/vendors/boxicons/css/boxicons.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+</head>
+
+<body class="bg-primary-subtle">
+    <div class="container-fluid py-5">
+        <h2 class="text-center text-uppercase fw-bold mb-5">
+            New york city property sale price comparison dashboard
+        </h2>
+
+        <div class="row g-3">
+            <div class="col-lg-9">
+                <div class="row row-cols-2 row-cols-lg-4 g-4 mb-5">
+                    <div class="col">
+                        <div class="card border-0 rounded-0 bg-primary text-white text-center">
+                            <div class="card-body">
+                                <p class="mb-1">Borough</p>
+                                <h2 class="mb-0 total-borough"></h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card border-0 rounded-0 bg-primary text-white text-center">
+                            <div class="card-body">
+                                <p class="mb-1">Total Sale Price</p>
+                                <h2 class="mb-0 total-sale-price"></h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card border-0 rounded-0 bg-primary text-white text-center">
+                            <div class="card-body">
+                                <p class="mb-1">LOT</p>
+                                <h2 class="mb-0 total-lot"></h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card border-0 rounded-0 bg-primary text-white text-center">
+                            <div class="card-body">
+                                <p class="mb-1">Total Unit</p>
+                                <h2 class="mb-0 total-units"></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-4 mb-4">
+                    <div class="col-lg-7">
+                        <h6 class="text-center mb-2">Unit Trend by Recidential Units and Commercial Units</h6>
+                        <div class="card border-primary rounded-0">
+                            <div class="card-body p-3">
+                                <canvas id="unitTrendChart" height="207"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <h6 class="text-center mb-2">Borough with the Highest Sale Price</h6>
+                        <div class="card border-primary rounded-0">
+                            <div class="card-body p-3">
+                                <canvas id="boroughHighestSalePriceChart" height="400"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <h6 class="text-center mb-2">
+                            Total Sale Price per Borough Based on Month and Year
+                        </h6>
+                        <div class="card border-primary rounded-0">
+                            <canvas id="totalSalePriceBoroughBasedMonthYearChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="card border-0 rounded-0 bg-primary text-white text-center mb-3">
+                    <div class="card-body">
+                        <div class="dropdown mb-1">
+                            <button
+                                class="btn btn-primary-subtle rounded-0 w-100 d-flex justify-content-between align-items-center dropdown-toggle"
+                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Borough
+                            </button>
+                            <div class="dropdown-menu w-100 rounded-0 p-3" id="dropdown-borough">
+                                <!-- HTML from Javascript -->
+                            </div>
+                        </div>
+                        <div class="dropdown mb-1">
+                            <button
+                                class="btn btn-primary-subtle rounded-0 w-100 d-flex justify-content-between align-items-center dropdown-toggle"
+                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Date
+                            </button>
+                            <div class="dropdown-menu w-100 rounded-0 p-3" id="dropdown-date">
+                                <!-- HTML from Javascript -->
+                            </div>
+                        </div>
+                        <div class="dropdown mb-1">
+                            <button
+                                class="btn btn-primary-subtle rounded-0 w-100 d-flex justify-content-between align-items-center dropdown-toggle"
+                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Year
+                            </button>
+                            <div class="dropdown-menu w-100 rounded-0 p-3" id="dropdown-year">
+                                <!-- HTML from Javascript -->
+                            </div>
+                        </div>
+                        <button id="filter-button"
+                            class="btn btn-primary-subtle rounded-0 d-flex align-items-center justify-content-center gap-2 w-100">
+                            <i class="bx bxs-filter-alt"></i>
+                            Filter
+                        </button>
+                    </div>
+                </div>
+
+                <h6 class="text-center mb-2">Building Category Table</h6>
+                <div class="card rounded-0 mb-3 border-primary" style="height: 995px; overflow: auto">
+                    <div class="card-body">
+                        <table id="tableData" class="display">
+                            <!-- Tabel from Javascript -->
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/vendors/jquery/jquery.min.js"></script>
+    <script src="assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>

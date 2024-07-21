@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+* {
+    font-family: "Inter", sans-serif;
+}
+
+.bg-primary {
+    background-color: #014b9f !important;
+}
+
+.border-primary {
+    border-color: #014b9f !important;
+}
+
+.btn-primary-subtle {
+    background-color: #cfe2ff !important;
+    border-color: #cfe2ff !important;
+    color: #000 !important;
+}
+
+.bookman-font {
+    font-family: 'Bookman Old Style', serif;
+}
+
+.btn-primary-subtle:hover {
+    background-color: #b9d4ff !important;
+    border-color: #b9d4ff !important;
+}
+
+label {
+    cursor: pointer;
+}
