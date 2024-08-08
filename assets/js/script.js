@@ -758,18 +758,20 @@ async function boroughHighestSalePrice(data) {
             );
         });
 
-        // Hitung jumlah penjualan per borough dari data yang sudah difilter
-        const boroughCount = filteredData.reduce((acc, item) => {
-            if (acc[item.BOROUGH_NAME]) {
-                acc[item.BOROUGH_NAME]++;
-            } else {
-                acc[item.BOROUGH_NAME] = 1;
+        // Hitung rata-rata harga penjualan per borough dari data yang sudah difilter
+        const boroughSales = filteredData.reduce((acc, item) => {
+            if (!acc[item.BOROUGH_NAME]) {
+                acc[item.BOROUGH_NAME] = { total: 0, count: 0 };
             }
+            acc[item.BOROUGH_NAME].total += item.SALE_PRICE;
+            acc[item.BOROUGH_NAME].count++;
             return acc;
         }, {});
 
-        const boroughNames = Object.keys(boroughCount);
-        const boroughValues = Object.values(boroughCount);
+        const boroughNames = Object.keys(boroughSales);
+        const boroughValues = boroughNames.map(
+            (borough) => boroughSales[borough].total / boroughSales[borough].count
+        );
         const totalValues = boroughValues.reduce((acc, value) => acc + value, 0);
 
         const ctx = document
@@ -793,7 +795,7 @@ async function boroughHighestSalePrice(data) {
                     hoverBackgroundColor: boroughNames.map(
                         (borough) => boroughColors[borough]
                     ),
-                }, ],
+                }],
             },
             options: {
                 responsive: true,
