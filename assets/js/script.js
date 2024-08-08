@@ -335,7 +335,8 @@ async function updateTotals(data) {
 
     // Hitung total untuk kolom LOT setelah difilter
     const totalLot =
-        filteredData.reduce((acc, property) => acc + parseFloat(property.LOT), 0) /
+        filteredData.reduce((acc, property) => acc +
+            parseFloat(property.LOT), 0) /
         1000000; // Ubah ke juta
 
     // Format total sale price menjadi format yang diinginkan (misal: 89,3M)
