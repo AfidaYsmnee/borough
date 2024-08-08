@@ -607,7 +607,7 @@ function fetchYearofTotalResidentialUnitsAndCommercialUnitsbyBorough(data) {
     }
 }
 
-// Chart Unit Trend by Residential Units and Commercial Units
+// Chart Unit Trend by Recidential Units and Commercial Units
 function ResidentialUnitsandCommercialUnits(data) {
     const selectedBoroughs = Array.from(
         document.querySelectorAll('input[name="borough"]:checked')
@@ -620,7 +620,7 @@ function ResidentialUnitsandCommercialUnits(data) {
     ).map((cb) => cb.value);
 
     const filteredData = data.filter((entry) => {
-        const saleDate = new Date(entry["SALE_DATE"].split('/').reverse().join('/')); // Adjust date format
+        const saleDate = new Date(entry["SALE_DATE"]);
         const month = saleDate.toLocaleString("default", { month: "short" });
         const year = saleDate.getFullYear().toString();
         const label = `${month} ${year}`;
@@ -638,7 +638,7 @@ function ResidentialUnitsandCommercialUnits(data) {
     const commercialUnits = {};
 
     filteredData.forEach((entry) => {
-        const saleDate = new Date(entry["SALE_DATE"].split('/').reverse().join('/')); // Adjust date format
+        const saleDate = new Date(entry["SALE_DATE"]);
         const month = saleDate.toLocaleString("default", { month: "short" });
         const year = saleDate.getFullYear().toString();
         const label = `${month} ${year}`;
@@ -656,18 +656,14 @@ function ResidentialUnitsandCommercialUnits(data) {
         commercialUnits[label] += parseFloat(entry["COMMERCIAL_UNITS"]) || 0;
     });
 
-    const allLabels = [];
-    for (let year = 2016; year <= 2017; year++) {
-        for (let month = 1; month <= 12; month++) {
-            const date = new Date(year, month - 1, 1);
-            const label = `${date.toLocaleString("default", { month: "short" })} ${year}`;
-            if ((year === 2016 && month >= 9) || (year === 2017 && month <= 8)) {
-                allLabels.push(label);
-            }
-        }
-    }
+    const barLabels = Array.from(barLabelsSet).sort((a, b) => {
+        const [monthA, yearA] = a.split(" ");
+        const [monthB, yearB] = b.split(" ");
+        return (
+            new Date(`${monthA} 1, ${yearA}`) - new Date(`${monthB} 1, ${yearB}`)
+        );
+    });
 
-    const barLabels = allLabels; // Use allLabels to ensure order
     const residentialData = barLabels.map(
         (label) => residentialUnits[label] || 0
     );
