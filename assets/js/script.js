@@ -692,7 +692,6 @@ function ResidentialUnitsandCommercialUnits(data) {
     return { barLabels, barDatasets };
 }
 
-
 function renderResidentialUnitsandCommercialUnits(data) {
     const { barLabels, barDatasets } = ResidentialUnitsandCommercialUnits(data);
     const barCtx = document.getElementById("unitTrendChart").getContext("2d");
